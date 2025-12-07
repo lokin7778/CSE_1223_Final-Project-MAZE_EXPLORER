@@ -18,13 +18,13 @@ public class Explorer {
         // a 2D array
         try (BufferedReader reader = new BufferedReader(new FileReader(map_name))) {
 
-            // declares a string variable line
-            String line;
+            int dimension = reader.read(); // this reads the first line's character
+            int numericDimension = Character.getNumericValue(dimension); // gets the int value of the dimension
 
-            // using a while-loop, check if you have reached the end of file,
-            while ((line = reader.readLine()) != null) {
+            // create a new array using the dimension
+            int[][] locations = new int[numericDimension][numericDimension];
 
-            }
+            
         } catch (IOException e) {
             System.out.println("ERROR - Cannot load file " + map_name);
         }
