@@ -6,17 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Explorer {
-    public static void main(String[] args) {
 
-        Scanner console = new Scanner(System.in); // creates the scanner object 'in'
-
-        // prompts the user for the filename and inputs it
-        System.out.print("Enter a map file name: ");
-        String map_name = console.nextLine();
+    public static void initializeArray(String fName){
 
         // use a try-catch block to check if the file exists and load the data in
         // a 2D array
-        try (BufferedReader reader = new BufferedReader(new FileReader(map_name))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fName))) {
 
             // Read the dimension from first line
             String firstLine = reader.readLine();
@@ -52,13 +47,22 @@ public class Explorer {
                 }
             }
 
-            reader.close();
-
+            reader.close(); // closes the BufferedReader object
 
         } catch (IOException e) {
-            System.out.println("ERROR - Cannot load file " + map_name);
+            System.out.println("ERROR - Cannot load file " + fName);
         }
 
+    }
 
+    public static void main(String[] args) {
+
+        Scanner console = new Scanner(System.in); // creates the scanner object 'in'
+
+        // prompts the user for the filename and inputs it
+        System.out.print("Enter a map file name: ");
+        String map_name = console.nextLine();
+
+        initializeArray(map_name); // calls the initializeArray() function
     }
 }
