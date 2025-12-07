@@ -7,10 +7,18 @@ import java.io.IOException;
 
 public class Explorer {
 
-    public static void initializeArray(String fName){
+    /**
+     * This method is used to load the map layout into a 2D Array by taking in the file to be read in as a parameter
+     *
+     * @param fName (fileName for the file to be read in)
+     * @return The 2D Array that the method created
+     */
+
+    public static int[][] initializeArray(String fName){
 
         // use a try-catch block to check if the file exists and load the data in
         // a 2D array
+        int[][] map = null;
         try (BufferedReader reader = new BufferedReader(new FileReader(fName))) {
 
             // Read the dimension from first line
@@ -18,7 +26,7 @@ public class Explorer {
             int dimension = Integer.parseInt(firstLine.trim());
 
             // Create 2D array
-            int[][] map = new int[dimension][dimension];
+            map = new int[dimension][dimension];
 
             int location;
             int row = 0;
@@ -53,7 +61,10 @@ public class Explorer {
             System.out.println("ERROR - Cannot load file " + fName);
         }
 
+        return map;
     }
+
+
 
     public static void main(String[] args) {
 
@@ -63,6 +74,8 @@ public class Explorer {
         System.out.print("Enter a map file name: ");
         String map_name = console.nextLine();
 
-        initializeArray(map_name); // calls the initializeArray() function
+        int[][] dimensions = initializeArray(map_name); // calls the initializeArray() function and stores the output 2D array in a variable called dimensions
+
+
     }
 }
