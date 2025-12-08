@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.io.BufferedReader;
@@ -94,7 +95,54 @@ public class Explorer {
         }
 
         // return the availableExit variable
-        return "There are exits to the: " + availableExit;
+        return availableExit;
+    }
+
+    public static ArrayList<Integer> moveInLayout(int row, int column, String availableExits, int[][] mapLayout){
+
+        ArrayList<Integer> finalRowCol = new ArrayList<>();
+
+        Scanner in = new Scanner(System.in);
+
+        if (mapLayout[row][column] == 1) {
+            System.out.println("Oh no! You have run into a ravenous Bugblatter Beast!");
+        }
+        else if (mapLayout[row][column] == 2) {
+            System.out.println("AAAARGH! You have fallen into a pit!");
+        }
+        else if (mapLayout[row][column] == 3) {
+            System.out.println("You have found the gold!");
+            System.out.println();
+            System.out.println("You have won!  Congratulations!");
+            finalRowCol.add(-1);
+        }
+        else if (mapLayout[row][column] == 0){
+
+            System.out.print("Which way do you want to move? ");
+            String userMove = in.nextLine().toUpperCase();
+
+            if (userMove.equals("N")) {
+                row = row - 1;
+                finalRowCol.add(row);
+                finalRowCol.add(column);
+            } else if (userMove.equals("E")) {
+                column = column + 1;
+                finalRowCol.add(row);
+                finalRowCol.add(column);
+            } else if (userMove.equals("S")) {
+                row = row + 1;
+                finalRowCol.add(row);
+                finalRowCol.add(column);
+            } else if (userMove.equals("W")) {
+                column = column - 1;
+                finalRowCol.add(row);
+                finalRowCol.add(column);
+            }
+
+        }
+
+        return finalRowCol;
+
     }
 
     /**
@@ -118,7 +166,19 @@ public class Explorer {
 
         while (!gameWon) {
 
-            
+            String availableExit = availableExits(row, col);
+            System.out.println("There are exits to the: " + availableExit);
+
+            ArrayList<Integer> moveLayout = moveInLayout(row, col, availableExit, mapLayout);
+
+            if (moveLayout.get(0)==-1){
+                gameWon = true;
+            }
+            else{
+                availableExit = availableExits(row, col);
+                System.out.println("There are exits to the: " + availableExit);
+            }
+
         }
         return gameWon;
     }
@@ -134,5 +194,7 @@ public class Explorer {
         int[][] dimensions = initializeArray(map_name); // calls the initializeArray() function and stores the output 2D array in a variable called dimensions
 
         boolean gameWon = mainGame(dimensions);
+
+
     }
 }
