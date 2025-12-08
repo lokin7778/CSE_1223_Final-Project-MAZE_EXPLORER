@@ -120,6 +120,7 @@ public class Explorer {
 
             System.out.print("Which way do you want to move? ");
             String userMove = in.nextLine().toUpperCase();
+            System.out.println();
 
             if (userMove.equals("N")) {
                 row = row - 1;
@@ -175,8 +176,8 @@ public class Explorer {
                 gameWon = true;
             }
             else{
-                availableExit = availableExits(row, col);
-                System.out.println("There are exits to the: " + availableExit);
+                row = moveLayout.get(0);
+                col = moveLayout.get(1);
             }
 
         }
