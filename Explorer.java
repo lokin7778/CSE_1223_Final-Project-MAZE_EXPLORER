@@ -65,6 +65,39 @@ public class Explorer {
     }
 
     /**
+     *
+     * This method checks the row and column from the 2D array and then returns the available exits depending on where
+     * the user currently is in the array
+     *
+     * @param row The row in which the user currently is in the 2D array
+     * @param column The column in which the user currently is in the 2D array
+     * @return returns the available exits to the user playing the game
+     */
+
+    public static String availableExits(int row, int column){
+
+        // declare a string available exit to track the available exits
+        String availableExit;
+
+        // print out the current location to the user
+        System.out.println("You are in location row:" + row + " col:" + column);
+
+        // conditional statements to check where the user and change the available exits according to that
+        if (row == 0 && column == 0) {
+            availableExit = "ES";
+        } else if (row == 0) {
+            availableExit = "NES";
+        } else if (column == 0) {
+            availableExit = "ESW";
+        } else {
+            availableExit = "NESW";
+        }
+
+        // return the availableExit variable
+        return availableExit;
+    }
+
+    /**
      * This method takes in the 2D array as an input and a scanner object too, it basically is the main interface of the
      * game that the user will interact with and if the player wins the game (i.e, reaches the number 3 on the layout),
      * the method breaks and returns true, or else it will return false
@@ -78,14 +111,16 @@ public class Explorer {
         // declare all the necessary variables
         int noOfRounds = 1;
         boolean gameWon = false;
+        int row = 0;
+        int col = 0;
 
         Scanner in = new Scanner(System.in); // creates a new scanner object
 
-        while (!gameWon){
+        while (!gameWon) {
 
-            
+
+
         }
-
         return gameWon;
     }
 
