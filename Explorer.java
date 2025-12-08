@@ -85,16 +85,16 @@ public class Explorer {
         // conditional statements to check where the user and change the available exits according to that
         if (row == 0 && column == 0) {
             availableExit = "ES";
-        } else if (row == 0) {
-            availableExit = "NES";
-        } else if (column == 0) {
+        } else if (row == 0 && column!=0) {
             availableExit = "ESW";
+        } else if (column == 0 && row!=0) {
+            availableExit = "NES";
         } else {
             availableExit = "NESW";
         }
 
         // return the availableExit variable
-        return availableExit;
+        return "There are exits to the: " + availableExit;
     }
 
     /**
@@ -118,8 +118,7 @@ public class Explorer {
 
         while (!gameWon) {
 
-
-
+            
         }
         return gameWon;
     }
