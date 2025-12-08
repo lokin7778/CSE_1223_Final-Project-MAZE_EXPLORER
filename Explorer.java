@@ -64,7 +64,30 @@ public class Explorer {
         return map;
     }
 
+    /**
+     * This method takes in the 2D array as an input and a scanner object too, it basically is the main interface of the
+     * game that the user will interact with and if the player wins the game (i.e, reaches the number 3 on the layout),
+     * the method breaks and returns true, or else it will return false
+     *
+     * @param mapLayout The 2D array which was initialized by the method
+     * @return returns either true/false depending on weather the user has won the game
+     */
 
+    public static boolean mainGame(int[][] mapLayout){
+
+        // declare all the necessary variables
+        int noOfRounds = 1;
+        boolean gameWon = false;
+
+        Scanner in = new Scanner(System.in); // creates a new scanner object
+
+        while (!gameWon){
+
+            
+        }
+
+        return gameWon;
+    }
 
     public static void main(String[] args) {
 
@@ -76,6 +99,6 @@ public class Explorer {
 
         int[][] dimensions = initializeArray(map_name); // calls the initializeArray() function and stores the output 2D array in a variable called dimensions
 
-
+        boolean gameWon = mainGame(dimensions);
     }
 }
