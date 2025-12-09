@@ -118,6 +118,42 @@ public class Explorer {
 
             System.out.println("There are exits to the: " + availableExits);
 
+            // Check each direction individually to avoid array out of bounds
+            boolean foundBeast = false;
+            boolean foundPit = false;
+
+            // Check North (row - 1)
+            if (row > 0) {
+                if (mapLayout[row - 1][column] == 1) foundBeast = true;
+                if (mapLayout[row - 1][column] == 2) foundPit = true;
+            }
+
+            // Check South (row + 1)
+            if (row < mapLayout.length - 1) {
+                if (mapLayout[row + 1][column] == 1) foundBeast = true;
+                if (mapLayout[row + 1][column] == 2) foundPit = true;
+            }
+
+            // Check West (column - 1)
+            if (column > 0) {
+                if (mapLayout[row][column - 1] == 1) foundBeast = true;
+                if (mapLayout[row][column - 1] == 2) foundPit = true;
+            }
+
+            // Check East (column + 1)
+            if (column < mapLayout[0].length - 1) {
+                if (mapLayout[row][column + 1] == 1) foundBeast = true;
+                if (mapLayout[row][column + 1] == 2) foundPit = true;
+            }
+
+            // Print hints
+            if (foundBeast) {
+                System.out.println("You hear a growling noise.");
+            }
+            if (foundPit) {
+                System.out.println("You feel a breeze.");
+            }
+
             System.out.print("Which way do you want to move? ");
             String userMove = in.nextLine().toUpperCase();
             System.out.println();
@@ -144,6 +180,7 @@ public class Explorer {
                     finalRowCol.add(column);
                 }
             }
+
 
         }
 
