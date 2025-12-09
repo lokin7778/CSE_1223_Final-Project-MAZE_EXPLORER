@@ -124,26 +124,42 @@ public class Explorer {
 
             // Check North (row - 1)
             if (row > 0) {
-                if (mapLayout[row - 1][column] == 1) foundBeast = true;
-                if (mapLayout[row - 1][column] == 2) foundPit = true;
+                if (mapLayout[row - 1][column] == 1) {
+                    foundBeast = true;
+                }
+                else if (mapLayout[row - 1][column] == 2) {
+                    foundPit = true;
+                }
             }
 
             // Check South (row + 1)
             if (row < mapLayout.length - 1) {
-                if (mapLayout[row + 1][column] == 1) foundBeast = true;
-                if (mapLayout[row + 1][column] == 2) foundPit = true;
+                if (mapLayout[row + 1][column] == 1){
+                    foundBeast = true;
+                }
+                else if (mapLayout[row + 1][column] == 2){
+                    foundPit = true;
+                }
             }
 
             // Check West (column - 1)
             if (column > 0) {
-                if (mapLayout[row][column - 1] == 1) foundBeast = true;
-                if (mapLayout[row][column - 1] == 2) foundPit = true;
+                if (mapLayout[row][column - 1] == 1){
+                    foundBeast = true;
+                }
+                else if (mapLayout[row][column - 1] == 2){
+                    foundPit = true;
+                }
             }
 
             // Check East (column + 1)
             if (column < mapLayout[0].length - 1) {
-                if (mapLayout[row][column + 1] == 1) foundBeast = true;
-                if (mapLayout[row][column + 1] == 2) foundPit = true;
+                if (mapLayout[row][column + 1] == 1){
+                    foundBeast = true;
+                }
+                else if (mapLayout[row][column + 1] == 2){
+                    foundPit = true;
+                }
             }
 
             // Print hints
@@ -242,7 +258,8 @@ public class Explorer {
 
         int[][] dimensions = initializeArray(map_name); // calls the initializeArray() function and stores the output 2D array in a variable called dimensions
 
-        boolean gameWon = mainGame(dimensions);
-
+        if (dimensions!=null) {
+            boolean gameWon = mainGame(dimensions);
+        }
     }
 }
