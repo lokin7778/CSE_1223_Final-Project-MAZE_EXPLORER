@@ -1,3 +1,4 @@
+import java.io.DataOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.BufferedReader;
@@ -99,10 +100,14 @@ public class Explorer {
 
         if (mapLayout[row][column] == 1) {
             System.out.println("Oh no! You have run into a ravenous Bugblatter Beast!");
+            System.out.println();
+            System.out.println("You have died! Game over!");
             finalRowCol.add(-1);
         }
         else if (mapLayout[row][column] == 2) {
             System.out.println("AAAARGH! You have fallen into a pit!");
+            System.out.println();
+            System.out.println("you have died! Game over!");
             finalRowCol.add(-2);
         }
         else if (mapLayout[row][column] == 3) {
@@ -261,5 +266,6 @@ public class Explorer {
         if (dimensions!=null) {
             boolean gameWon = mainGame(dimensions);
         }
+        
     }
 }
