@@ -179,11 +179,11 @@ public class Explorer {
             }
 
             else if (moveLayout.get(0)==-2){
-                gameWon = true;
+                break;
             }
 
             else if (moveLayout.get(0)==-1){
-                gameWon = true;
+                break;
             }
 
             else{
