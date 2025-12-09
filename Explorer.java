@@ -1,4 +1,3 @@
-import java.io.DataOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.BufferedReader;
@@ -266,6 +265,6 @@ public class Explorer {
         if (dimensions!=null) {
             boolean gameWon = mainGame(dimensions);
         }
-        
+
     }
 }
