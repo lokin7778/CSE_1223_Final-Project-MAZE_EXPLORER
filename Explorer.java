@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Arrays;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Explorer {
@@ -56,8 +54,6 @@ public class Explorer {
                 }
             }
 
-            reader.close(); // closes the BufferedReader object
-
         } catch (IOException e) {
             System.out.println("ERROR - Cannot load file " + fName);
         }
@@ -80,15 +76,15 @@ public class Explorer {
         // declare a string available exit to track the available exits
         String availableExit;
 
-        // print out the current location to the user
-        System.out.println("You are in location row:" + row + " col:" + column);
+//        // print out the current location to the user
+//        System.out.println("You are in location row:" + row + " col:" + column);
 
         // conditional statements to check where the user and change the available exits according to that
         if (row == 0 && column == 0) {
             availableExit = "ES";
-        } else if (row == 0 && column!=0) {
+        } else if (row == 0) {
             availableExit = "ESW";
-        } else if (column == 0 && row!=0) {
+        } else if (column == 0) {
             availableExit = "NES";
         } else {
             availableExit = "NESW";
@@ -106,38 +102,50 @@ public class Explorer {
 
         if (mapLayout[row][column] == 1) {
             System.out.println("Oh no! You have run into a ravenous Bugblatter Beast!");
+            finalRowCol.add(-1);
         }
         else if (mapLayout[row][column] == 2) {
             System.out.println("AAAARGH! You have fallen into a pit!");
+            finalRowCol.add(-2);
         }
         else if (mapLayout[row][column] == 3) {
             System.out.println("You have found the gold!");
             System.out.println();
             System.out.println("You have won!  Congratulations!");
-            finalRowCol.add(-1);
+            finalRowCol.add(-3);
         }
         else if (mapLayout[row][column] == 0){
+
+            // print out the current location to the user
+            System.out.println("You are in location row:" + row + " col:" + column);
+
+            System.out.println("There are exits to the: " + availableExits);
 
             System.out.print("Which way do you want to move? ");
             String userMove = in.nextLine().toUpperCase();
             System.out.println();
 
-            if (userMove.equals("N")) {
-                row = row - 1;
-                finalRowCol.add(row);
-                finalRowCol.add(column);
-            } else if (userMove.equals("E")) {
-                column = column + 1;
-                finalRowCol.add(row);
-                finalRowCol.add(column);
-            } else if (userMove.equals("S")) {
-                row = row + 1;
-                finalRowCol.add(row);
-                finalRowCol.add(column);
-            } else if (userMove.equals("W")) {
-                column = column - 1;
-                finalRowCol.add(row);
-                finalRowCol.add(column);
+            switch (userMove) {
+                case "N" -> {
+                    row = row - 1;
+                    finalRowCol.add(row);
+                    finalRowCol.add(column);
+                }
+                case "E" -> {
+                    column = column + 1;
+                    finalRowCol.add(row);
+                    finalRowCol.add(column);
+                }
+                case "S" -> {
+                    row = row + 1;
+                    finalRowCol.add(row);
+                    finalRowCol.add(column);
+                }
+                case "W" -> {
+                    column = column - 1;
+                    finalRowCol.add(row);
+                    finalRowCol.add(column);
+                }
             }
 
         }
@@ -145,6 +153,7 @@ public class Explorer {
         return finalRowCol;
 
     }
+
 
     /**
      * This method takes in the 2D array as an input and a scanner object too, it basically is the main interface of the
@@ -158,23 +167,28 @@ public class Explorer {
     public static boolean mainGame(int[][] mapLayout){
 
         // declare all the necessary variables
-        int noOfRounds = 1;
         boolean gameWon = false;
         int row = 0;
         int col = 0;
-
-        Scanner in = new Scanner(System.in); // creates a new scanner object
-
+        
         while (!gameWon) {
 
             String availableExit = availableExits(row, col);
-            System.out.println("There are exits to the: " + availableExit);
 
             ArrayList<Integer> moveLayout = moveInLayout(row, col, availableExit, mapLayout);
 
-            if (moveLayout.get(0)==-1){
+            if (moveLayout.get(0)==-3){
                 gameWon = true;
             }
+
+            else if (moveLayout.get(0)==-2){
+                gameWon = true;
+            }
+
+            else if (moveLayout.get(0)==-1){
+                gameWon = true;
+            }
+
             else{
                 row = moveLayout.get(0);
                 col = moveLayout.get(1);
@@ -195,7 +209,6 @@ public class Explorer {
         int[][] dimensions = initializeArray(map_name); // calls the initializeArray() function and stores the output 2D array in a variable called dimensions
 
         boolean gameWon = mainGame(dimensions);
-
 
     }
 }
