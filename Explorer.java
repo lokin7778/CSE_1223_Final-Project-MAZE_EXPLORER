@@ -76,9 +76,6 @@ public class Explorer {
         // declare a string available exit to track the available exits
         String availableExit;
 
-//        // print out the current location to the user
-//        System.out.println("You are in location row:" + row + " col:" + column);
-
         // conditional statements to check where the user and change the available exits according to that
         if (row == 0 && column == 0) {
             availableExit = "ES";
