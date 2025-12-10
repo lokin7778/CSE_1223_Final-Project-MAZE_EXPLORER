@@ -101,11 +101,11 @@ public class Explorer {
         return availableExit;
     }
 
-    public static ArrayList<Integer> moveInLayout(int row, int column, String availableExits, int[][] mapLayout){
+    public static ArrayList<Integer> moveInLayout(int row, int column, String availableExits, int[][] mapLayout, Scanner console){
 
         ArrayList<Integer> finalRowCol = new ArrayList<>();
 
-        Scanner in = new Scanner(System.in);
+        //console = new Scanner(System.in);
 
         if (mapLayout[row][column] == 1) {
             System.out.println("Oh no! You have run into a ravenous Bugblatter Beast!");
@@ -185,7 +185,7 @@ public class Explorer {
             }
 
             System.out.print("Which way do you want to move? ");
-            String userMove = in.nextLine().toUpperCase();
+            String userMove = console.nextLine().toUpperCase();
             System.out.println();
 
             switch (userMove) {
@@ -228,7 +228,7 @@ public class Explorer {
      * @return returns either true/false depending on weather the user has won the game
      */
 
-    public static boolean mainGame(int[][] mapLayout){
+    public static boolean mainGame(int[][] mapLayout, Scanner console){
 
         // declare all the necessary variables
         boolean gameWon = false;
@@ -239,7 +239,7 @@ public class Explorer {
 
             String availableExit = availableExits(row, col);
 
-            ArrayList<Integer> moveLayout = moveInLayout(row, col, availableExit, mapLayout);
+            ArrayList<Integer> moveLayout = moveInLayout(row, col, availableExit, mapLayout, console);
 
             if (moveLayout.get(0)==-3){
                 gameWon = true;
@@ -273,7 +273,7 @@ public class Explorer {
         int[][] dimensions = initializeArray(map_name); // calls the initializeArray() function and stores the output 2D array in a variable called dimensions
 
         if (dimensions!=null) {
-            boolean gameWon = mainGame(dimensions);
+            boolean gameWon = mainGame(dimensions, console);
         }
 
     }
