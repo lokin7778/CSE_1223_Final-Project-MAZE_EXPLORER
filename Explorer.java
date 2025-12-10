@@ -1,3 +1,13 @@
+/**
+ * DESCRIPTION - This is a Maze Explorer game where the user will be required to enter a filename when the program prompts
+ * them to and then will move in the map layout by specifying a direction that they will be moving in. When the user
+ * reaches '3' marked on the map layout, then the user wins the game
+ *
+ * @author Lokesh Narasimhan
+ * @version 12/10/2025
+ *
+ */
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.BufferedReader;
@@ -254,7 +264,7 @@ public class Explorer {
 
     public static void main(String[] args) {
 
-        Scanner console = new Scanner(System.in); // creates the scanner object 'in'
+        Scanner console = new Scanner(System.in); // creates the scanner object 'console'
 
         // prompts the user for the filename and inputs it
         System.out.print("Enter a map file name: ");
